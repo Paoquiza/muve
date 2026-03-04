@@ -584,6 +584,14 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
   .container{padding:0 20px}
 }
 
+/* Hero: prevent overlap with fixed nav on mobile */
+@media(max-width:900px){
+  .im-chapter{padding:80px 24px 24px}
+}
+@media(max-width:600px){
+  .im-chapter{padding:70px 20px 20px}
+}
+
 /* Hero: trust badges wrap nicely on small screens */
 @media(max-width:600px){
   .im-trust{flex-wrap:wrap;gap:12px 20px;margin-top:24px}
