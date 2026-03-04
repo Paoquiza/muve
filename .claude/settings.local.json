@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:muveabogados.com)",
+      "WebSearch",
+      "WebFetch(domain:www.paperstreet.com)",
+      "WebFetch(domain:www.lawbrokr.com)",
+      "WebFetch(domain:azurodigital.com)",
+      "WebFetch(domain:www.attorneyatwork.com)",
+      "WebFetch(domain:framerbite.com)",
+      "WebFetch(domain:www.cubiclefugitive.com)",
+      "WebFetch(domain:mojo-agency.com)",
+      "WebFetch(domain:www.mitziweb.com)",
+      "WebFetch(domain:www.dangilroy.com)",
+      "WebFetch(domain:www.clio.com)",
+      "WebFetch(domain:basham.com.mx)",
+      "WebFetch(domain:www.creel.mx)",
+      "WebFetch(domain:nfrp.mx)",
+      "WebFetch(domain:gonzalezcalvillo.com)",
+      "WebFetch(domain:www.galicia.com.mx)",
+      "WebFetch(domain:www.mijares.mx)",
+      "WebFetch(domain:pcga.mx)",
+      "WebFetch(domain:www.santamarinasteta.mx)",
+      "WebFetch(domain:smpslegal.com)",
+      "WebFetch(domain:figueroayasociados.mx)",
+      "WebFetch(domain:grupobriffault.com)",
+      "WebFetch(domain:bufetedeabogadosej.com.mx)",
+      "WebFetch(domain:saucedoabogados.com.mx)",
+      "WebFetch(domain:www.vonwobeser.com)",
+      "WebFetch(domain:aba-abogados.mx)",
+      "WebFetch(domain:www.magnifylab.com)",
+      "WebFetch(domain:www.contra.agency)",
+      "WebFetch(domain:casequota.com)",
+      "WebFetch(domain:www.theedigital.com)",
+      "WebFetch(domain:www.kirkland.com)",
+      "WebFetch(domain:www.cliffordchance.com)",
+      "WebFetch(domain:www.slatergordon.co.uk)",
+      "Bash(/Volumes/almazan/personal/Proyectos/Personal/Abogado/muve/index-03.html:*)",
+      "Bash(open:*)"
+    ]
+  }
+}

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis — Muve Abogados</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* ── Slide system ── */
+        .slides-container {
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide {
+            height: 100vh;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 48px 100px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .slide.active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ── Top bar ── */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            padding: 14px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .top-bar .logo {
+            font-weight: 700;
+            font-size: 13px;
+            color: #60a5fa;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .slide-counter {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .slide-counter .current-num { color: #e2e8f0; }
+
+        /* ── Progress bar ── */
+        .progress-track {
+            position: fixed;
+            top: 52px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #1e293b;
+            z-index: 100;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border-radius: 0 2px 2px 0;
+            transition: width 0.4s ease;
+        }
+
+        /* ── Bottom nav ── */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #1e293b;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            background: #1e293b;
+            color: #e2e8f0;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .nav-btn:hover { background: #334155; border-color: #475569; }
+        .nav-btn:active { transform: scale(0.97); }
+
+        .nav-btn.primary {
+            background: #2563eb;
+            border-color: #3b82f6;
+            color: #fff;
+        }
+
+        .nav-btn.primary:hover { background: #1d4ed8; }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .nav-btn .arrow { font-size: 18px; line-height: 1; }
+
+        /* Dots in bottom nav */
+        .nav-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .nav-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #334155;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-dots span.active {
+            background: #60a5fa;
+            transform: scale(1.4);
+        }
+
+        .nav-dots span:hover { background: #475569; }
+
+        /* ── Cover ── */
+        .slide-cover { text-align: center; background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%); }
+
+        .slide-cover h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .slide-cover .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #94a3b8;
+            margin-bottom: 36px;
+        }
+
+        .site-badge {
+            display: inline-block;
+            background: #1e293b;
+            border: 1px solid #334155;
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            color: #60a5fa;
+            margin-bottom: 20px;
+        }
+
+        .date-badge { font-size: 14px; color: #64748b; }
+
+        /* ── Section titles ── */
+        .section-tag {
+            font-size: 12px;
+            font-weight: 700;
+            color: #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .slide h2 {
+            font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 28px;
+            letter-spacing: -0.5px;
+        }
+
+        /* ── Score cards ── */
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .score-card {
+            background: #1e293b;
+            border-radius: 14px;
+            padding: 22px;
+            border: 1px solid #334155;
+        }
+
+        .score-card .label {
+            font-size: 12px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .score-card .score {
+            font-size: 2.4rem;
+            font-weight: 800;
+        }
+
+        .score-card .score small { font-size: 1rem; color: #64748b; }
+
+        .score-card .bar { height: 5px; background: #334155; border-radius: 3px; overflow: hidden; margin-top: 10px; }
+        .score-card .bar-fill { height: 100%; border-radius: 3px; }
+
+        .score-card .verdict { font-size: 12px; font-weight: 700; margin-top: 6px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .s-critical .score, .s-critical .verdict { color: #ef4444; }
+        .s-critical .bar-fill { background: #ef4444; }
+
+        .s-bad .score, .s-bad .verdict { color: #f97316; }
+        .s-bad .bar-fill { background: #f97316; }
+
+        .s-regular .score, .s-regular .verdict { color: #eab308; }
+        .s-regular .bar-fill { background: #eab308; }
+
+        .s-global {
+            background: linear-gradient(135deg, #1e293b, #172554);
+            border-color: #1d4ed8;
+        }
+        .s-global .score { font-size: 2.8rem; color: #f97316; }
+        .s-global .verdict { color: #f97316; }
+        .s-global .bar-fill { background: #f97316; }
+
+        /* ── Key points ── */
+        .kp-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .kp-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: #1e293b;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border-left: 4px solid #ef4444;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .kp-list li.warn { border-left-color: #f97316; }
+        .kp-list li.ok { border-left-color: #22c55e; }
+        .kp-list li.info { border-left-color: #60a5fa; }
+
+        .kp-list li .icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+        .kp-list li strong { color: #f1f5f9; }
+
+        /* ── Compare ── */
+        .compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .compare-col {
+            border-radius: 14px;
+            padding: 20px;
+            border: 1px solid #334155;
+        }
+
+        .compare-col.bad { background: #2d1515; border-color: #7f1d1d; }
+        .compare-col.good { background: #0d2818; border-color: #166534; }
+
+        .compare-col .tag {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .compare-col.bad .tag { color: #fca5a5; }
+        .compare-col.good .tag { color: #86efac; }
+
+        .compare-col ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+        .compare-col ul li {
+            font-size: 14px;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .compare-col.bad ul li::before { content: "✕"; position: absolute; left: 0; color: #ef4444; font-weight: 700; }
+        .compare-col.good ul li::before { content: "✓"; position: absolute; left: 0; color: #22c55e; font-weight: 700; }
+
+        /* ── Recs ── */
+        .rec-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .rec-badge.urgent { background: #7f1d1d; color: #fca5a5; }
+        .rec-badge.important { background: #78350f; color: #fcd34d; }
+        .rec-badge.nice { background: #1e3a5f; color: #93c5fd; }
+
+        .rec-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .rec-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #1e293b;
+            border-radius: 10px;
+            font-size: 14px;
+            border: 1px solid #334155;
+        }
+
+        .rec-list .n {
+            background: #334155;
+            color: #e2e8f0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ── Verdict ── */
+        .verdict-box {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 2px solid #334155;
+            border-radius: 20px;
+            padding: 36px;
+            text-align: center;
+        }
+
+        .verdict-box p {
+            font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+            color: #f1f5f9;
+            line-height: 1.7;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .hl { color: #60a5fa; font-weight: 700; }
+        .hl-w { color: #f97316; font-weight: 700; }
+
+        .cta-box {
+            margin-top: 24px;
+            background: linear-gradient(135deg, #172554, #1e293b);
+            border: 1px solid #1d4ed8;
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .cta-box p { color: #93c5fd; font-size: 15px; line-height: 1.6; }
+
+        .text-muted { color: #64748b; font-size: 13px; margin-top: 16px; }
+
+        /* ── Keyboard hint ── */
+        .kbd-hint {
+            position: fixed;
+            bottom: 76px;
+            right: 40px;
+            font-size: 11px;
+            color: #475569;
+            z-index: 99;
+        }
+
+        .kbd-hint kbd {
+            background: #1e293b;
+            border: 1px solid #334155;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 11px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .slide { padding: 70px 20px 90px; }
+            .top-bar, .bottom-nav { padding: 12px 20px; }
+            .compare { grid-template-columns: 1fr; }
+            .kbd-hint { display: none; }
+            .nav-btn span:not(.arrow) { display: none; }
+            .nav-btn { padding: 10px 16px; }
+        }
+
+        @media print {
+            .slide { display: flex !important; min-height: auto; page-break-after: always; height: auto; }
+            .top-bar, .bottom-nav, .kbd-hint { display: none; }
+            body { overflow: auto; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="top-bar">
+    <div class="logo">Auditoría Web</div>
+    <div class="slide-counter"><span class="current-num" id="counterCurrent">1</span> / <span id="counterTotal">9</span></div>
+</div>
+
+<!-- Progress -->
+<div class="progress-track"><div class="progress-fill" id="progressBar" style="width:11.1%"></div></div>
+
+<!-- Keyboard hint -->
+<div class="kbd-hint">Usa <kbd>&larr;</kbd> <kbd>&rarr;</kbd> o las flechas</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SLIDES -->
+<!-- ═══════════════════════════════════════ -->
+<div class="slides-container">
+
+    <!-- 1: Cover -->
+    <section class="slide slide-cover active" data-title="Portada">
+        <div class="slide-inner text-center">
+            <div class="site-badge">muveabogados.com</div>
+            <h1>Análisis del Sitio Web</h1>
+            <p class="subtitle">Diseño &middot; Google &middot; Experiencia de Usuario</p>
+            <p class="date-badge">3 de marzo de 2026</p>
+        </div>
+    </section>
+
+    <!-- 2: Scores -->
+    <section class="slide" data-title="Scores">
+        <div class="slide-inner">
+            <div class="section-tag">Resultados</div>
+            <h2>Calificaciones Generales</h2>
+            <div class="score-grid">
+                <div class="score-card s-bad">
+                    <div class="label">Diseño</div>
+                    <div class="score">4.5<small>/10</small></div>
+                    <div class="bar"><div class="bar-fill" style="width:45%"></div></div>
+                    <div class="verdict">Deficiente</div>
+                </div>
+                <div class="score-card s-critical">
+                    <div class="label">SEO / Google</div>
+                    <div class="score">3<small>/10</small></div>
+                    <div class="bar"><div class="bar-fill" style="width:30%"></div></div>
+                    <div class="verdict">Muy Deficiente</div>
+                </div>
+                <div class="score-card s-critical">
+                    <div class="label">Accesibilidad</div>
+                    <div class="score">2.5<small>/10</small></div>
+                    <div class="bar"><div class="bar-fill" style="width:25%"></div></div>
+                    <div class="verdict">Crítico</div>
+                </div>
+                <div class="score-card s-regular">
+                    <div class="label">Contenido</div>
+                    <div class="score">5<small>/10</small></div>
+                    <div class="bar"><div class="bar-fill" style="width:50%"></div></div>
+                    <div class="verdict">Regular</div>
+                </div>
+                <div class="score-card s-regular">
+                    <div class="label">Velocidad</div>
+                    <div class="score">5<small>/10</small></div>
+                    <div class="bar"><div class="bar-fill" style="width:50%"></div></div>
+                    <div class="verdict">Regular</div>
+                </div>
+                <div class="score-card s-global">
+                    <div class="label">Score Global</div>
+                    <div class="score">4<small>/10</small></div>
+                    <div class="bar"><div class="bar-fill" style="width:40%"></div></div>
+                    <div class="verdict">Deficiente</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3: Diseño -->
+    <section class="slide" data-title="Diseño">
+        <div class="slide-inner">
+            <div class="section-tag">01 &mdash; Diseño &middot; 4.5/10</div>
+            <h2>Apariencia Visual</h2>
+            <ul class="kp-list">
+                <li><span class="icon">🟣</span><strong>Colores inadecuados</strong> &mdash; El morado brillante no transmite seriedad legal</li>
+                <li><span class="icon">🏷️</span><strong>Doble identidad</strong> &mdash; Dice "Muñoz & Ventré" y "Muve" al mismo tiempo</li>
+                <li class="warn"><span class="icon">📋</span><strong>Template genérico (Zyro)</strong> &mdash; Se nota que es plantilla, resta credibilidad</li>
+                <li class="warn"><span class="icon">👣</span><strong>Footer ajeno</strong> &mdash; "Powered by Belle Marketing Agency" visible</li>
+                <li><span class="icon">🔤</span><strong>Tipografía básica</strong> &mdash; Fuentes del sistema, sin personalidad</li>
+            </ul>
+            <div class="compare">
+                <div class="compare-col bad">
+                    <div class="tag">Hoy</div>
+                    <ul>
+                        <li>Morado brillante</li>
+                        <li>Plantilla Zyro</li>
+                        <li>Marca confusa</li>
+                        <li>Fuentes genéricas</li>
+                    </ul>
+                </div>
+                <div class="compare-col good">
+                    <div class="tag">Ideal</div>
+                    <ul>
+                        <li>Azul oscuro, gris, dorado</li>
+                        <li>Diseño a medida</li>
+                        <li>Una sola marca</li>
+                        <li>Tipografía elegante</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4: SEO -->
+    <section class="slide" data-title="SEO">
+        <div class="slide-inner">
+            <div class="section-tag">02 &mdash; SEO &middot; 3/10</div>
+            <h2>Posicionamiento en Google</h2>
+            <ul class="kp-list">
+                <li><span class="icon">📄</span><strong>Solo 4 páginas</strong> &mdash; Necesita mínimo 15-20 (una por especialidad + blog + FAQ)</li>
+                <li><span class="icon">✍️</span><strong>Sin blog</strong> &mdash; Google premia sitios que publican contenido regularmente</li>
+                <li class="warn"><span class="icon">📍</span><strong>Sin Google Maps</strong> &mdash; No aparece al buscar "abogado cerca de mí"</li>
+                <li><span class="icon">🏗️</span><strong>Etiquetas técnicas faltantes</strong> &mdash; Sin canonical, Open Graph ni viewport</li>
+                <li><span class="icon">🤖</span><strong>Google no sabe qué es</strong> &mdash; Falta Schema de "despacho legal"</li>
+                <li class="warn"><span class="icon">📱</span><strong>Links se ven mal al compartir</strong> &mdash; En WhatsApp/Facebook aparece genérico</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 5: Accesibilidad -->
+    <section class="slide" data-title="Accesibilidad">
+        <div class="slide-inner">
+            <div class="section-tag">03 &mdash; Accesibilidad &middot; 2.5/10</div>
+            <h2>Accesibilidad</h2>
+            <ul class="kp-list">
+                <li><span class="icon">🖼️</span><strong>0 imágenes con descripción</strong> &mdash; Google y lectores de pantalla no las entienden</li>
+                <li><span class="icon">📝</span><strong>Formulario sin etiquetas</strong> &mdash; El campo de email no dice qué es</li>
+                <li class="warn"><span class="icon">📱</span><strong>Vista móvil comprometida</strong> &mdash; Puede verse diminuta en celulares</li>
+                <li class="warn"><span class="icon">🎨</span><strong>Bajo contraste</strong> &mdash; Texto morado sobre blanco difícil de leer</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 6: Contenido -->
+    <section class="slide" data-title="Contenido">
+        <div class="slide-inner">
+            <div class="section-tag">04 &mdash; Contenido &middot; 5/10</div>
+            <h2>Contenido</h2>
+            <ul class="kp-list">
+                <li class="ok"><span class="icon">✅</span><strong>Buen eslogan</strong> &mdash; "Hacemos la diferencia" es claro</li>
+                <li class="ok"><span class="icon">✅</span><strong>Testimonios</strong> &mdash; Opiniones con 5 estrellas generan confianza</li>
+                <li><span class="icon">📋</span><strong>Textos genéricos</strong> &mdash; Podrían ser de cualquier despacho</li>
+                <li><span class="icon">🔍</span><strong>Sin páginas por especialidad</strong> &mdash; No hay "derecho penal", "divorcios", etc.</li>
+                <li class="warn"><span class="icon">📊</span><strong>"150+ confianza total"</strong> &mdash; No tiene sentido como métrica</li>
+                <li><span class="icon">❓</span><strong>Sin FAQ ni casos de éxito</strong> &mdash; Oportunidad perdida</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 7: Técnico -->
+    <section class="slide" data-title="Técnico">
+        <div class="slide-inner">
+            <div class="section-tag">05 &mdash; Técnico &middot; 5/10</div>
+            <h2>Velocidad y Técnico</h2>
+            <ul class="kp-list">
+                <li><span class="icon">🔒</span><strong>Atado a Zyro</strong> &mdash; Plataforma limitada, poca personalización</li>
+                <li><span class="icon">🌐</span><strong>Imágenes en servidor ajeno</strong> &mdash; Si Zyro falla, las fotos desaparecen</li>
+                <li class="warn"><span class="icon">📅</span><strong>Copyright 2025</strong> &mdash; Desactualizado, da impresión de abandono</li>
+                <li class="ok"><span class="icon">✅</span><strong>Compresión automática</strong> &mdash; Las imágenes no pesan de más</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 8: Recomendaciones -->
+    <section class="slide" data-title="Plan de Acción">
+        <div class="slide-inner">
+            <div class="section-tag">Plan de Acción</div>
+            <h2>Recomendaciones</h2>
+
+            <div class="rec-badge urgent">Urgente</div>
+            <ul class="rec-list">
+                <li><span class="n">1</span><strong>Migrar</strong> a plataforma profesional (WordPress o sitio a medida)</li>
+                <li><span class="n">2</span><strong>Descripciones</strong> en todas las imágenes (alt text)</li>
+                <li><span class="n">3</span><strong>Etiquetas SEO</strong> &mdash; Open Graph, canonical, viewport</li>
+                <li><span class="n">4</span><strong>Páginas por especialidad</strong> &mdash; penal, civil, mercantil, familiar...</li>
+                <li><span class="n">5</span><strong>Schema legal</strong> &mdash; Decirle a Google que es un despacho</li>
+            </ul>
+
+            <div class="rec-badge important">Importante</div>
+            <ul class="rec-list">
+                <li><span class="n">6</span><strong>Paleta profesional</strong> &mdash; azules, grises, dorados</li>
+                <li><span class="n">7</span><strong>Unificar marca</strong> &mdash; un solo nombre en todo</li>
+                <li><span class="n">8</span><strong>Blog jurídico</strong> &mdash; artículos que atraigan clientes desde Google</li>
+                <li><span class="n">9</span><strong>FAQ</strong> &mdash; preguntas frecuentes con respuestas</li>
+                <li><span class="n">10</span><strong>Google Business</strong> &mdash; aparecer en Google Maps</li>
+            </ul>
+
+            <div class="rec-badge nice">Deseable</div>
+            <ul class="rec-list">
+                <li><span class="n">11</span>Formulario con más campos</li>
+                <li><span class="n">12</span>Mapa de ubicación</li>
+                <li><span class="n">13</span>Google Analytics</li>
+                <li><span class="n">14</span>Reseñas en Google</li>
+                <li><span class="n">15</span>Optimizar velocidad de carga</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 9: Veredicto -->
+    <section class="slide" data-title="Veredicto">
+        <div class="slide-inner">
+            <div class="section-tag">Conclusión</div>
+            <h2>Veredicto Final</h2>
+            <div class="verdict-box">
+                <p>
+                    Hoy es una <span class="hl-w">tarjeta de presentación básica</span>.<br>
+                    No es una <span class="hl">herramienta para atraer clientes</span>.
+                </p>
+            </div>
+            <div class="cta-box">
+                <p>Un rediseño profesional con SEO local y contenido de valor puede <strong>transformarlo en una máquina de captación de clientes</strong>.</p>
+            </div>
+            <p class="text-muted" style="text-align:center">Análisis realizado el 3 de marzo de 2026</p>
+        </div>
+    </section>
+
+</div>
+
+<!-- Bottom nav -->
+<nav class="bottom-nav">
+    <button class="nav-btn" id="btnPrev" disabled>
+        <span class="arrow">&larr;</span> <span>Anterior</span>
+    </button>
+    <div class="nav-dots" id="navDots"></div>
+    <button class="nav-btn primary" id="btnNext">
+        <span>Siguiente</span> <span class="arrow">&rarr;</span>
+    </button>
+</nav>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const dotsContainer = document.getElementById('navDots');
+    const progressBar = document.getElementById('progressBar');
+    const counterCurrent = document.getElementById('counterCurrent');
+    const counterTotal = document.getElementById('counterTotal');
+    let current = 0;
+
+    counterTotal.textContent = slides.length;
+
+    // Create dots
+    slides.forEach((_, i) => {
+        const dot = document.createElement('span');
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+    });
+
+    function goTo(index) {
+        if (index < 0 || index >= slides.length) return;
+        slides[current].classList.remove('active');
+        current = index;
+        slides[current].classList.add('active');
+        update();
+    }
+
+    function update() {
+        // Buttons
+        btnPrev.disabled = current === 0;
+        btnNext.querySelector('span:not(.arrow)').textContent = current === slides.length - 1 ? 'Inicio' : 'Siguiente';
+
+        // Dots
+        dotsContainer.querySelectorAll('span').forEach((d, i) => {
+            d.classList.toggle('active', i === current);
+        });
+
+        // Progress
+        const pct = ((current + 1) / slides.length) * 100;
+        progressBar.style.width = pct + '%';
+
+        // Counter
+        counterCurrent.textContent = current + 1;
+    }
+
+    btnPrev.addEventListener('click', () => goTo(current - 1));
+    btnNext.addEventListener('click', () => {
+        if (current === slides.length - 1) goTo(0);
+        else goTo(current + 1);
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); btnNext.click(); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); btnPrev.click(); }
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
+    document.addEventListener('touchend', (e) => {
+        const diff = e.changedTouches[0].screenX - touchStartX;
+        if (Math.abs(diff) > 50) {
+            if (diff < 0) goTo(current + 1);
+            else goTo(current - 1);
+        }
+    });
+
+    update();
+</script>
+
+</body>
+</html>
