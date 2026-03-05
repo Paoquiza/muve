@@ -127,10 +127,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
 }
 
 /* ===== IMMERSIVE SCROLL (hero + story fused) ===== */
-.immersive{background:var(--charcoal);position:relative;height:300vh}
+.immersive{background:var(--charcoal);position:relative;height:200vh}
 .immersive::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 45%,rgba(181,120,62,0.14) 0%,transparent 55%),radial-gradient(ellipse 50% 40% at 85% 75%,rgba(181,120,62,0.08) 0%,transparent 45%),radial-gradient(ellipse 40% 35% at 15% 25%,rgba(181,120,62,0.05) 0%,transparent 40%);pointer-events:none;animation:heroGlow 10s ease-in-out infinite alternate}
 .immersive::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:120px;background:linear-gradient(to top,var(--charcoal),transparent);pointer-events:none;z-index:2}
-@keyframes heroGlow{0%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}100%{opacity:0.8;transform:scale(1.02)}}
+@keyframes heroGlow{0%{opacity:0.6}50%{opacity:1}100%{opacity:0.8}}
 
 .immersive-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 
@@ -151,9 +151,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
 .im-scroll-text{font-size:0.5625rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.45);font-weight:500}
 
 /* ===== CHAPTERS ===== */
-.im-chapter{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 24px;opacity:0;transform:translateY(60px) scale(0.95);transition:opacity 0.9s cubic-bezier(0.4,0,0.2,1),transform 0.9s cubic-bezier(0.4,0,0.2,1);pointer-events:none}
-.im-chapter.active{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-.im-chapter.exiting{opacity:0;transform:translateY(-60px) scale(0.95)}
+.im-chapter{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 24px;opacity:0;transform:translateY(30px);transition:opacity 0.7s cubic-bezier(0.4,0,0.2,1),transform 0.7s cubic-bezier(0.4,0,0.2,1);pointer-events:none;will-change:opacity,transform}
+.im-chapter.active{opacity:1;transform:translateY(0);pointer-events:auto}
+.im-chapter.exiting{opacity:0;transform:translateY(-30px)}
 
 .im-inner{max-width:860px;text-align:center}
 
@@ -177,15 +177,15 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
 .im-chapter.active .im-text em::after{transform:scaleX(1)}
 
 /* Word-by-word stagger */
-.im-word{display:inline-block;opacity:0;transform:translateY(12px);transition:opacity 0.5s ease,transform 0.5s ease}
+.im-word{display:inline-block;opacity:0;transform:translateY(8px);transition:opacity 0.4s ease,transform 0.4s ease}
 .im-chapter.active .im-word{opacity:1;transform:translateY(0)}
-.im-chapter.exiting .im-word{opacity:0;transform:translateY(-8px);transition-delay:0s!important}
+.im-chapter.exiting .im-word{opacity:0;transition-delay:0s!important;transition-duration:0.2s}
 
 /* Chapter 0 headline — EXTRA LARGE */
 .im-chapter[data-chapter="0"] .im-text{font-size:clamp(2.5rem,7vw,5rem);letter-spacing:-2px;line-height:1.05;margin-bottom:36px}
 
 /* Supporting text — staggered reveal */
-.im-sub{font-size:clamp(1.0625rem,1.8vw,1.3125rem);color:rgba(255,255,255,0);line-height:1.85;max-width:620px;margin:0 auto;transform:translateY(16px);transition:color 0.6s 0.35s ease,transform 0.6s 0.35s ease}
+.im-sub{font-size:clamp(1.0625rem,1.8vw,1.3125rem);color:rgba(255,255,255,0);line-height:1.85;max-width:620px;margin:0 auto;transform:translateY(10px);transition:color 0.5s 0.25s ease,transform 0.5s 0.25s ease}
 .im-chapter.active .im-sub{color:rgba(255,255,255,0.82);transform:translateY(0)}
 
 /* Results strip */
@@ -220,7 +220,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
 
 
 @media(max-width:700px){
-  .immersive{height:280vh}
+  .immersive{height:180vh}
   .im-dots{right:16px;gap:10px}
   .im-dot{width:6px;height:6px}
   .im-results{flex-wrap:wrap;gap:24px 0}
@@ -228,9 +228,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
   .im-result:nth-child(even){border-right:none}
   .im-cta{width:100%;justify-content:center;padding:18px 28px}
   .im-scroll{bottom:28px}
+  .im-chapter{transition:opacity 0.5s cubic-bezier(0.4,0,0.2,1),transform 0.5s cubic-bezier(0.4,0,0.2,1)}
 }
 @media(max-width:450px){
-  .immersive{height:280vh}
+  .immersive{height:170vh}
   .im-dots{display:none}
   .im-text{font-size:clamp(1.625rem,7vw,2.25rem)!important}
   .im-chapter[data-chapter="0"] .im-text{font-size:clamp(1.875rem,8vw,2.5rem)!important}
@@ -239,6 +240,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
   .im-result:last-child{border-bottom:none}
   .im-results{flex-direction:column;gap:0}
   .im-scroll{display:none}
+  .im-chapter{transform:translateY(20px)}
+  .im-chapter.exiting{transform:translateY(-20px)}
 }
 
 /* ===== SECTIONS ===== */
@@ -1315,9 +1318,19 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
     // Progress bar
     if(imProgress)imProgress.style.width=(progress*100)+'%';
 
-    // Which chapter?
-    var chapterIndex=Math.min(Math.floor(progress*totalChapters),totalChapters-1);
-    if(scrolled<0)chapterIndex=0;
+    // Which chapter? Low threshold so first scroll triggers transition
+    var chapterIndex;
+    if(scrolled<0){
+      chapterIndex=0;
+    } else {
+      var threshold=0.12;
+      var hysteresis=0.04;
+      if(currentChapter===0){
+        chapterIndex=progress>threshold? 1 : 0;
+      } else {
+        chapterIndex=progress<(threshold-hysteresis)? 0 : 1;
+      }
+    }
 
     if(chapterIndex!==currentChapter){
       currentChapter=chapterIndex;
