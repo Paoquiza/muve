@@ -140,7 +140,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
 }
 
 /* ===== IMMERSIVE SCROLL (hero + story fused) ===== */
-.immersive{background:var(--charcoal);position:relative;height:200vh}
+.immersive{background:var(--charcoal);position:relative;height:155vh}
 .immersive::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 45%,rgba(181,120,62,0.14) 0%,transparent 55%),radial-gradient(ellipse 50% 40% at 85% 75%,rgba(181,120,62,0.08) 0%,transparent 45%),radial-gradient(ellipse 40% 35% at 15% 25%,rgba(181,120,62,0.05) 0%,transparent 40%);pointer-events:none;animation:heroGlow 10s ease-in-out infinite alternate}
 .immersive::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:120px;background:linear-gradient(to top,var(--charcoal),transparent);pointer-events:none;z-index:2}
 @keyframes heroGlow{0%{opacity:0.6}50%{opacity:1}100%{opacity:0.8}}
@@ -233,7 +233,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
 
 
 @media(max-width:700px){
-  .immersive{height:180vh}
+  .immersive{height:145vh}
   .im-dots{right:16px;gap:10px}
   .im-dot{width:6px;height:6px}
   .im-results{flex-wrap:wrap;gap:24px 0}
@@ -244,7 +244,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
   .im-chapter{transition:opacity 0.5s cubic-bezier(0.4,0,0.2,1),transform 0.5s cubic-bezier(0.4,0,0.2,1)}
 }
 @media(max-width:450px){
-  .immersive{height:170vh}
+  .immersive{height:140vh}
   .im-dots{display:none}
   .im-text{font-size:clamp(1.625rem,7vw,2.25rem)!important}
   .im-chapter[data-chapter="0"] .im-text{font-size:clamp(1.875rem,8vw,2.5rem)!important}
@@ -292,17 +292,23 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
 /* ===== ABOUT (minimal, confident) ===== */
 .about-sec{padding:100px 0 80px;background:var(--anthracite);border-top:1px solid rgba(181,120,62,0.15)}
 .about-core{text-align:center;margin-bottom:64px}
-.about-statement{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.25rem);color:var(--white);line-height:1.15;letter-spacing:0;font-weight:300;margin-bottom:16px}
-.about-context{font-size:1.0625rem;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto}
+.about-statement{font-family:var(--serif);font-size:clamp(1.625rem,3.5vw,2.5rem);color:var(--white);line-height:1.25;letter-spacing:0;font-weight:300;margin-bottom:24px}
+.about-context{font-size:clamp(1.125rem,2.2vw,1.375rem);color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:28px;max-width:660px;margin-left:auto;margin-right:auto}
 
 /* Credentials — silent proof */
-.about-creds{display:flex;justify-content:center;gap:44px;flex-wrap:wrap}
-.about-cred{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.82);font-size:0.875rem;font-weight:500;transition:color 0.3s ease}
+.about-creds{display:flex;justify-content:center;gap:24px 32px;flex-wrap:nowrap;max-width:900px;margin-left:auto;margin-right:auto}
+.about-cred{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.82);font-size:0.8125rem;font-weight:500;transition:color 0.3s ease;max-width:200px;line-height:1.4}
 .about-cred:hover{color:var(--white)}
-.about-cred svg{width:22px;height:22px;color:var(--emerald-light);flex-shrink:0}
+.about-cred svg{width:32px;height:32px;min-width:32px;color:var(--emerald-light);flex-shrink:0}
 
+@media(max-width:900px){
+  .about-creds{flex-wrap:wrap;justify-content:center;gap:20px 28px}
+  .about-cred{max-width:200px}
+}
 @media(max-width:600px){
-  .about-creds{flex-direction:column;align-items:center;gap:20px}
+  .about-creds{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px;max-width:400px}
+  .about-cred{max-width:none;font-size:0.75rem}
+  .about-cred svg{width:28px;height:28px;min-width:28px}
 }
 
 /* ===== VIDEO SECTION ===== */
@@ -660,8 +666,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
   .about-statement{margin-bottom:12px}
   .about-context{font-size:0.9375rem}
   .about-core{margin-bottom:40px}
-  .about-cred{font-size:0.8125rem}
-  .about-cred svg{width:18px;height:18px}
+  .about-cred{font-size:0.75rem}
+  .about-cred svg{width:28px;height:28px;min-width:28px}
 }
 
 /* Testimonials: tighter card padding on mobile */
@@ -821,8 +827,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
 <section class="sec sec-dark about-sec" id="nosotros">
   <div class="container">
     <div class="about-core reveal">
-      <h2 class="about-statement">Fundamos MUVE porque nos cansamos de ver c&oacute;mo los grandes despachos trataban a sus clientes:<br>como n&uacute;meros de expediente.</h2>
-      <p class="about-context">Desde 2009, cada caso lo lleva un socio directamente. Sabemos tu nombre, conocemos tu historia y peleamos como si fuera nuestra. Eso no es un slogan: es nuestra &uacute;nica forma de trabajar.</p>
+      <h2 class="about-statement">Fundamos MUVE porque creemos que detr&aacute;s de cada caso hay alguien con algo importante que proteger &mdash; ya sea su familia, su patrimonio o su empresa.</h2>
+      <p class="about-context">Llevamos m&aacute;s de 15 a&ntilde;os defendiendo lo que m&aacute;s importa a nuestros clientes. $180M recuperados y un 90% de &eacute;xito no son casualidad &mdash; son el resultado de tratar cada caso como si fuera el &uacute;nico.</p>
       <span class="sec-bar"></span>
     </div>
     <div class="about-creds reveal">
