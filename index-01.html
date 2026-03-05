@@ -674,9 +674,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
 @media(max-width:700px){
   .test-wrap{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .test-wrap::-webkit-scrollbar{display:none}
-  .test-track{display:flex;transition:none!important;transform:none!important}
-  .test-slide{min-width:85%;scroll-snap-align:center;padding:0 8px}
-  .test-card{padding:32px 24px}
+  .test-track{display:flex;align-items:stretch;transition:none!important;transform:none!important}
+  .test-slide{min-width:85%;scroll-snap-align:center;padding:0 8px;display:flex}
+  .test-card{padding:32px 24px;display:flex;flex-direction:column;flex:1}
+  .test-text{flex:1}
+  .test-author-row{margin-top:auto}
   .test-text{font-size:1.0625rem;margin-bottom:24px}
   .test-arrows{display:none}
 }
@@ -798,7 +800,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
         <h1 class="im-text">&iquest;Problema legal urgente?<br>Resolvemos en <em>72 horas.</em></h1>
         <p class="im-sub">Consulta inicial gratuita. Un abogado especialista analiza tu caso hoy mismo.</p>
         <div class="im-cta-wrap">
-          <a href="https://wa.me/525595625039?text=Hola%2C%20necesito%20ayuda%20legal%20urgente" class="im-cta" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg> Habla con un abogado ahora</a>
+          <a href="https://wa.me/525564497601?text=Hola%2C%20necesito%20ayuda%20legal%20urgente" class="im-cta" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg> Habla con un abogado ahora</a>
           <a href="tel:+525595625039" class="im-cta im-cta-secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> (55) 9562 5039</a>
         </div>
         <div class="im-trust">
@@ -943,7 +945,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
           <h3 class="areas-panel-title">Derecho Penal</h3>
           <div class="areas-panel-tags"><span class="areas-panel-tag">Juicios orales</span><span class="areas-panel-tag">Fuero federal</span><span class="areas-panel-tag">Fuero com&uacute;n</span><span class="areas-panel-tag">Ministerio P&uacute;blico</span></div>
           <p class="areas-panel-desc">&iquest;Te detuvieron o detuvieron a un familiar? Actuamos en horas, no en d&iacute;as. Defensa en juicios orales, audiencias de control y ante Ministerio P&uacute;blico. 200+ juicios con 90% de &eacute;xito.</p>
-          <a href="https://wa.me/525595625039?text=Hola%2C%20necesito%20ayuda%20en%20derecho%20penal" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">&iquest;Necesitas ayuda urgente? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://wa.me/525564497601?text=Hola%2C%20necesito%20ayuda%20en%20derecho%20penal" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">&iquest;Necesitas ayuda urgente? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
@@ -953,7 +955,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
           <h3 class="areas-panel-title">Derecho Fiscal</h3>
           <div class="areas-panel-tags"><span class="areas-panel-tag">SAT</span><span class="areas-panel-tag">PRODECON</span><span class="areas-panel-tag">Cr&eacute;ditos fiscales</span><span class="areas-panel-tag">IVA</span></div>
           <p class="areas-panel-desc">&iquest;El SAT te notific&oacute; un cr&eacute;dito fiscal? &iquest;Te est&aacute;n auditando? No pagues sin pelear. Hemos anulado cr&eacute;ditos por m&aacute;s de $180M. Defensa ante SAT, PRODECON y tribunales.</p>
-          <a href="https://wa.me/525595625039?text=Hola%2C%20tengo%20un%20problema%20fiscal" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">&iquest;Tienes un problema fiscal? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://wa.me/525564497601?text=Hola%2C%20tengo%20un%20problema%20fiscal" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">&iquest;Tienes un problema fiscal? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
@@ -963,7 +965,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
           <h3 class="areas-panel-title">Derecho Civil</h3>
           <div class="areas-panel-tags"><span class="areas-panel-tag">Contratos</span><span class="areas-panel-tag">Sucesiones</span><span class="areas-panel-tag">Inmobiliario</span><span class="areas-panel-tag">Adeudos</span></div>
           <p class="areas-panel-desc">&iquest;Te deben dinero? &iquest;Problemas con una herencia o un inquilino? &iquest;Firmaste un contrato injusto? Recuperamos lo que es tuyo. Contratos, sucesiones, inmobiliario y adeudos por v&iacute;a judicial.</p>
-          <a href="https://wa.me/525595625039?text=Hola%2C%20necesito%20asesor%C3%ADa%20en%20derecho%20civil" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">Pl&aacute;ticanos tu caso <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://wa.me/525564497601?text=Hola%2C%20necesito%20asesor%C3%ADa%20en%20derecho%20civil" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">Pl&aacute;ticanos tu caso <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
@@ -973,7 +975,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
           <h3 class="areas-panel-title">Juicio de Amparo</h3>
           <div class="areas-panel-tags"><span class="areas-panel-tag">Amparo directo</span><span class="areas-panel-tag">Amparo indirecto</span><span class="areas-panel-tag">Suspensi&oacute;n</span><span class="areas-panel-tag">72 horas</span></div>
           <p class="areas-panel-desc">&iquest;El gobierno abus&oacute; de su autoridad? &iquest;Te clausuraron sin raz&oacute;n? Podemos frenar el acto en 72 horas con una suspensi&oacute;n. 150+ amparos concedidos. Actuamos HOY.</p>
-          <a href="https://wa.me/525595625039?text=Hola%2C%20necesito%20un%20amparo%20urgente" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">&iquest;Necesitas un amparo? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://wa.me/525564497601?text=Hola%2C%20necesito%20un%20amparo%20urgente" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">&iquest;Necesitas un amparo? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
@@ -983,7 +985,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
           <h3 class="areas-panel-title">Derecho Corporativo</h3>
           <div class="areas-panel-tags"><span class="areas-panel-tag">Sociedades</span><span class="areas-panel-tag">M&amp;A</span><span class="areas-panel-tag">Gobierno corporativo</span><span class="areas-panel-tag">Cumplimiento</span></div>
           <p class="areas-panel-desc">&iquest;Vas a abrir una empresa? &iquest;Necesitas un contrato blindado? &iquest;Est&aacute;s en una fusi&oacute;n? Estructuramos tu negocio para que crezca protegido. Sociedades, M&amp;A, gobierno corporativo y cumplimiento.</p>
-          <a href="https://wa.me/525595625039?text=Hola%2C%20necesito%20asesor%C3%ADa%20corporativa" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">Agenda una consulta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://wa.me/525564497601?text=Hola%2C%20necesito%20asesor%C3%ADa%20corporativa" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">Agenda una consulta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
@@ -993,7 +995,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
           <h3 class="areas-panel-title">Propiedad Intelectual</h3>
           <div class="areas-panel-tags"><span class="areas-panel-tag">Marcas</span><span class="areas-panel-tag">Patentes</span><span class="areas-panel-tag">IMPI</span><span class="areas-panel-tag">Licenciamiento</span></div>
           <p class="areas-panel-desc">&iquest;Alguien est&aacute; usando tu marca? &iquest;Necesitas proteger tu idea antes de que te la copien? 500+ registros ante IMPI. Protegemos tu marca, patente y derechos de autor.</p>
-          <a href="https://wa.me/525595625039?text=Hola%2C%20necesito%20proteger%20mi%20marca" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">Protege tu marca hoy <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://wa.me/525564497601?text=Hola%2C%20necesito%20proteger%20mi%20marca" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">Protege tu marca hoy <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
@@ -1003,7 +1005,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
           <h3 class="areas-panel-title">Derecho Gubernamental</h3>
           <div class="areas-panel-tags"><span class="areas-panel-tag">Licitaciones</span><span class="areas-panel-tag">Contratos p&uacute;blicos</span><span class="areas-panel-tag">Administrativo</span></div>
           <p class="areas-panel-desc">&iquest;Quieres ganar una licitaci&oacute;n? &iquest;Tienes un contrato con gobierno en riesgo? Nuestro socio fue funcionario de la SFP. Sabemos c&oacute;mo funciona el sistema por dentro.</p>
-          <a href="https://wa.me/525595625039?text=Hola%2C%20necesito%20asesor%C3%ADa%20gubernamental" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">Habla con nuestro experto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://wa.me/525564497601?text=Hola%2C%20necesito%20asesor%C3%ADa%20gubernamental" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">Habla con nuestro experto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
@@ -1013,7 +1015,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
           <h3 class="areas-panel-title">Due Diligence</h3>
           <div class="areas-panel-tags"><span class="areas-panel-tag">Auditor&iacute;a legal</span><span class="areas-panel-tag">Inversiones</span><span class="areas-panel-tag">Riesgos</span><span class="areas-panel-tag">Adquisiciones</span></div>
           <p class="areas-panel-desc">&iquest;Vas a invertir o comprar un negocio? Antes de firmar, necesitas saber qu&eacute; riesgos hay. Hacemos la radiograf&iacute;a legal completa para que tomes decisiones informadas.</p>
-          <a href="https://wa.me/525595625039?text=Hola%2C%20necesito%20un%20due%20diligence" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">Solicita tu auditor&iacute;a <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://wa.me/525564497601?text=Hola%2C%20necesito%20un%20due%20diligence" class="areas-panel-cta" target="_blank" rel="noopener noreferrer">Solicita tu auditor&iacute;a <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
 
@@ -1198,7 +1200,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
         <p class="mid-cta-desc">Habla con un abogado especialista hoy. Sin costo, sin compromiso.</p>
       </div>
       <div class="mid-cta-actions">
-        <a href="https://wa.me/525595625039?text=Hola%2C%20necesito%20ayuda%20legal" class="mid-cta-btn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg> Escr&iacute;benos ahora</a>
+        <a href="https://wa.me/525564497601?text=Hola%2C%20necesito%20ayuda%20legal" class="mid-cta-btn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg> Escr&iacute;benos ahora</a>
         <a href="tel:+525595625039" class="mid-cta-link">o llama: (55) 9562 5039</a>
       </div>
     </div>
@@ -1251,7 +1253,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
         </form>
         <div class="contact-alt">
           <span class="contact-alt-text">o si prefieres respuesta inmediata:</span>
-          <a href="https://wa.me/525595625039?text=Hola%2C%20necesito%20ayuda%20legal" class="contact-wa-btn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg> Escr&iacute;benos por WhatsApp</a>
+          <a href="https://wa.me/525564497601?text=Hola%2C%20necesito%20ayuda%20legal" class="contact-wa-btn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg> Escr&iacute;benos por WhatsApp</a>
         </div>
       </div>
     </div>
@@ -1272,7 +1274,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--emerald);outline-of
 </footer>
 
 <!-- WHATSAPP FAB -->
-<a href="https://wa.me/525595625039?text=Hola%2C%20me%20gustaria%20agendar%20una%20consulta" class="wa-fab" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+<a href="https://wa.me/525564497601?text=Hola%2C%20me%20gustaria%20agendar%20una%20consulta" class="wa-fab" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
